@@ -36,7 +36,7 @@ public class CollectionTestSuite {
         List<Integer> result = OddNumbersExterminator.exterminate(emptyList);
         System.out.println("result.size: " + result.size());
         //Then
-        Assertions.assertEquals(emptyList.size(), result.size());
+        Assertions.assertEquals(0, result.size());
     }
 
     @DisplayName("when create List with odds and evens " +
@@ -44,8 +44,8 @@ public class CollectionTestSuite {
     @Test
     void testOddNumbersExterminatorNormalList() {
         //Given
-        List<Integer> normalList = Arrays.asList(new Integer[] {1, 2, 3, 4, 5, 6, 7});
-        List<Integer> expectedList = Arrays.asList(new Integer[] {2, 4, 6});
+        List<Integer> normalList = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+        List<Integer> expectedList = Arrays.asList(2, 4, 6);
         //When
         List<Integer> result = OddNumbersExterminator.exterminate(normalList);
         System.out.println("result size: " + result.size());
