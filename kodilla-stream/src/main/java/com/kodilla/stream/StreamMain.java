@@ -1,52 +1,25 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.iterate.NumbersGenerator;
-//import com.kodilla.stream.lambda.Executor;
-//import com.kodilla.stream.lambda.ExpressionExecutor;
-//import com.kodilla.stream.lambda.Processor;
-//import com.kodilla.stream.reference.FunctionalCalculator;
+import com.kodilla.stream.forumser.Forum;
+import com.kodilla.stream.forumser.ForumUser;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamMain {
 
     public static void main(String[] args) {
+        Forum forum = new Forum();
+        Map<Integer, Object> resultForumUserList = forum.getUserList().stream()
+                .filter(forumUser -> forumUser.getUserGender() == 'M')
+                .filter(forumUser -> forumUser.getPostQty() > 0)
+                .filter(forumUser ->  Period.between(forumUser.getBirthDate(), LocalDate.now()).getYears() >= 20)
+                .collect(Collectors.toMap(ForumUser::getUserId, forumUser -> forumUser));
 
-        String poem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit";
-        String betterPoem;
-        PoemBeautifier poemBeautifier = new PoemBeautifier();
-        poemBeautifier.beautify(poem, a -> "ABC "+a+" XYZ");
-        poemBeautifier.beautify(poem, a -> a.toUpperCase());
-        poemBeautifier.beautify(poem, a -> {return new StringBuffer(a).reverse().toString();});
-        poemBeautifier.beautify(poem, a -> {
-            StringBuffer sbA = new StringBuffer();
-            char[] aArray = a.toCharArray();
-            for (int i = 0; i < a.length(); i++) {
-                sbA.append(aArray[i]).append(" ");
-            }
-            return sbA.toString();
-        });
+        resultForumUserList.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
+                .forEach(System.out::println);
 
-        System.out.println("Using Stream to generate even numbers from 1 to 20");
-        NumbersGenerator.generateEven(20);
-
-        //1 ExecuteSaySomething executeSaySomething = new ExecuteSaySomething();
-        //2 Processor processor = new Processor();
-        //1 processor.execute(executeSaySomething);
-        //2 Executor codeToExecute = () -> System.out.println("This is an example text.");
-        //2 processor.execute(codeToExecute);
-        //2 processor.execute(() -> System.out.println("This is an example text."));
-
-        //3 ExpressionExecutor expressionExecutor = new ExpressionExecutor();
-
-        //3 expressionExecutor.executeExpression(10, 5, (a, b) -> a + b);
-        //3 expressionExecutor.executeExpression(10, 5, (a, b) -> a - b);
-        //3 expressionExecutor.executeExpression(10, 5, (a, b) -> a * b);
-        //3 expressionExecutor.executeExpression(10, 5, (a, b) -> a / b);
-
-        //3 System.out.println("Calculating expressions with method references");
-        //3 expressionExecutor.executeExpression(3, 4, FunctionalCalculator::multiplyAByB);
-        //3 expressionExecutor.executeExpression(3, 4, FunctionalCalculator::addAToB);
-        //3 expressionExecutor.executeExpression(3, 4, FunctionalCalculator::subBFromA);
-        //3 expressionExecutor.executeExpression(3, 4, FunctionalCalculator::divideAByB);
     }
 }
