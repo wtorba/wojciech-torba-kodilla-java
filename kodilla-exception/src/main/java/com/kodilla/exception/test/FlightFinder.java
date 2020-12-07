@@ -6,7 +6,6 @@ import java.util.Map;
 public class FlightFinder {
 
     public boolean findFlight(Flight flight) throws RouteNotFoundException {
-        Boolean result = null;
         Map<String, Boolean> flights = new HashMap<>();
         flights.put("Warszawa-Okęcie", true);
         flights.put("Kraków-Balice", true);
@@ -16,12 +15,9 @@ public class FlightFinder {
         flights.put("Gdańsk-Lecha Wałęsy", false);
 
         if (!(flights.containsKey(flight.getArrivalAirport())))
-            throw new RouteNotFoundException("Exception! List of airports out of date or wrong airport name.");
+           throw new RouteNotFoundException("Exception! List of airports out of date or wrong airport name.");
 
-        for (Map.Entry<String, Boolean> entry : flights.entrySet()) {
-            if (entry.getKey() == flight.getArrivalAirport()) result = entry.getValue();
-        }
-        return result;
+        return flights.get(flight.getArrivalAirport());
     }
 
     public static void main(String args[]) {
