@@ -9,10 +9,17 @@ public class App {
 
         OrderRequestRetriever orderRequestRetriever = new OrderRequestRetriever();
         OrderRequest orderRequest = orderRequestRetriever.retrieve();
-        System.out.println(food2door.createOrder(orderRequest));
+        try {
+            System.out.println(food2door.createOrder(orderRequest));
+        } catch (NoShopException e) {
+            System.out.println("There is no such shop registered: "+orderRequest.getSupplier());
+        }
         food2door.addShop("GlutenFreeShop",new GlutenFreeShop());
-        System.out.println(food2door.createOrder(orderRequest));
-
+        try {
+            System.out.println(food2door.createOrder(orderRequest));
+        } catch (NoShopException e) {
+            System.out.println("There is no such shop registered: "+orderRequest.getSupplier());
+        }
     }
 
 }

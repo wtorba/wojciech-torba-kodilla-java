@@ -18,8 +18,8 @@ public class Food2Door {
         try {
             return this.getShop(orderRequest.getSupplier()).process(orderRequest);
         } catch (NullPointerException e) {
-            System.out.println("There is no such shop registered: "+orderRequest.getSupplier());
-            return null;
+            throw new NoShopException();
+            //return null;
         }
     }
 
