@@ -18,7 +18,7 @@ public class App {
         OrderRequest orderRequest = orderRequestRetriever.retrieve();
         try {
             HashSet<OrderDto> orderDtoSet= (HashSet<OrderDto>) food2door.createOrder(orderRequest);
-            LOGGER.info("Order information: {}",orderDtoSet.stream().map(OrderDto::toString).collect(Collectors.joining("\n")));
+            LOGGER.info("Order information: \n{}",orderDtoSet.stream().map(OrderDto::toString).collect(Collectors.joining("\n")));
         } catch (NoShopException e) {
             LOGGER.warn("There is no such shop registered: {}",e);
         }
@@ -28,7 +28,7 @@ public class App {
             LOGGER.info("Order information: \n{}",orderDtoSet.stream().map(OrderDto::toString).collect(Collectors.joining("\n")));
 
         } catch (NoShopException e) {
-            LOGGER.warn("There is no such shop registered: {}","X");
+            LOGGER.warn("There is no such shop registered: {}",e);
         }
     }
 

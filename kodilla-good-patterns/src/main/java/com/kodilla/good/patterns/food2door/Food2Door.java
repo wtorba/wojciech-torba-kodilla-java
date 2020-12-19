@@ -20,6 +20,14 @@ public class Food2Door {
         return shops.get(supplier);
     }
 
+    public boolean checkShop(String shopName) {
+        if (!shops.containsKey(shopName)) {
+            LOGGER.warn("Shop {} doesn't exist.", shopName);
+            return false;
+        }
+        return true;
+    }
+
     public Set<OrderDto> createOrder(OrderRequest orderRequest) throws NoShopException {
 
             HashMap<String, HashMap<Product, Integer>> splittedOrders = new HashMap<>();
@@ -33,6 +41,7 @@ public class Food2Door {
         try {
             return splittedOrders.entrySet()
                               .stream()
+                              .filter(e -> checkShop(e.getKey()))
                               .map(e -> getShop(e.getKey()).process(new OrderRequest(e.getValue())))
                               .collect(Collectors.toSet());
         } catch (NullPointerException e) {
