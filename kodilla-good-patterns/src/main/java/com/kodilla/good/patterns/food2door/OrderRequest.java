@@ -1,27 +1,15 @@
 package com.kodilla.good.patterns.food2door;
 
-import com.kodilla.good.patterns.food2door.Product;
+import java.util.HashMap;
 
 public class OrderRequest {
-    private String supplier;
-    private Product product;
-    private int orderQty;
+    private final HashMap<Product, Integer> productsQty;
 
-    public OrderRequest(String supplier, Product product, int orderQty) {
-        this.supplier = supplier;
-        this.product = product;
-        this.orderQty = orderQty;
+    public OrderRequest(HashMap productsQty) {
+        this.productsQty = productsQty;
     }
 
-    public String getSupplier() {
-        return supplier;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public int getQty() {
-        return orderQty;
+    public HashMap<Product, Integer> getProductsQty() {
+        return productsQty;
     }
 }

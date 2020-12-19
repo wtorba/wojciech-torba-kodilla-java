@@ -28,7 +28,7 @@ public class MovieStore {
         return booksTitlesWithTranslations;
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         MovieStore movieStore = new MovieStore();
         System.out.println(movieStore.getMovies()
                 .entrySet()
