@@ -95,13 +95,13 @@ public class FlightFinder {
         currAirport = getAirport(airports, flight.getDepartureAirport());
         currAirport.setVisited("start");
         currAirport.setRoute(flight.getDepartureAirport());
-        System.out.println("Startujemy z "+currAirport.getAirportName());
+       // System.out.println("Startujemy z "+currAirport.getAirportName());
         while (existNotChecked(airports) && checked==0) {
             Iterator<Airport> airportsIter = airports.iterator();
             checked=1;
             while (airportsIter.hasNext()) {
                 currAirport = airportsIter.next();
-                System.out.println("Sprawdzam " + currAirport.getAirportName());
+               // System.out.println("Sprawdzam " + currAirport.getAirportName());
                 if (currAirport.getVisited()==1) {
                     if (flight.getArrivalAirport().equals(currAirport.getAirportName())) {
                         return "Inderict connection between " + flight.getDepartureAirport() + " and " + flight.getArrivalAirport() + " available:\n" + currAirport.getRoute().toString();
@@ -109,7 +109,7 @@ public class FlightFinder {
                     visitAirports(airports, flights, currAirport);
                     currAirport.setChecked();
                     checked=0;
-                    System.out.println("Zmiana checked na 1, bo trafilismy na "+currAirport.getAirportName());
+               //     System.out.println("Zmiana checked na 1, bo trafilismy na "+currAirport.getAirportName());
                 }
             }
         }
@@ -160,7 +160,7 @@ public class FlightFinder {
 //        System.out.println(FlightFinder.findFlights(new Flight("Gdańsk","Kraków")));
 //        System.out.println(FlightFinder.findFlights(new Flight("Warszawa","Poznań")));
         System.out.println(FlightFinder.findFlights(new Flight("Katowice","Szczecin")));
-        System.out.println(FlightFinder.findFlights(new Flight("Szczecin","Katowice")));
+        System.out.println(FlightFinder.findFlights(new Flight("Szczecin","Radom")));
 //        System.out.println(FlightFinder.findFlights(new Flight("Poznań","Katowice")));
 
     }
