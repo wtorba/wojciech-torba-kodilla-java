@@ -1,9 +1,8 @@
-package com.kodilla.good.patterns.flyAway;
+package com.kodilla.good.patterns.flyaway;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class FlightFinder {
@@ -96,18 +95,21 @@ public class FlightFinder {
         currAirport = getAirport(airports, flight.getDepartureAirport());
         currAirport.setVisited("start");
         currAirport.setRoute(flight.getDepartureAirport());
-        while (existNotChecked(airports) && checked!=0) {
+        System.out.println("Startujemy z "+currAirport.getAirportName());
+        while (existNotChecked(airports) && checked==0) {
             Iterator<Airport> airportsIter = airports.iterator();
+            checked=1;
             while (airportsIter.hasNext()) {
                 currAirport = airportsIter.next();
-                checked=0;
+                System.out.println("Sprawdzam " + currAirport.getAirportName());
                 if (currAirport.getVisited()==1) {
                     if (flight.getArrivalAirport().equals(currAirport.getAirportName())) {
                         return "Inderict connection between " + flight.getDepartureAirport() + " and " + flight.getArrivalAirport() + " available:\n" + currAirport.getRoute().toString();
                     }
                     visitAirports(airports, flights, currAirport);
                     currAirport.setChecked();
-                    checked=1;
+                    checked=0;
+                    System.out.println("Zmiana checked na 1, bo trafilismy na "+currAirport.getAirportName());
                 }
             }
         }
@@ -149,23 +151,17 @@ public class FlightFinder {
     }
 
     public static void main(String args[]) {
-        System.out.println(FlightFinder.findFlightsFrom("Kraków"));
-        System.out.println(FlightFinder.findFlightsTo("Gdańsk"));
+        System.out.println(FlightFinder.findFlightsFrom("Warszawa"));
+        System.out.println(FlightFinder.findFlightsTo("Szczecin"));
         System.out.println(FlightFinder.findFlightsFrom("Katowice"));
 
-//        ((HashSet<Flight>) FlightFinder.prepareFlights()).stream()
-//                .map(e -> e.getDepartureAirport()+" - "+e.getArrivalAirport())
-//                .forEach(System.out::println);
-//
-//        ((HashSet<Airport>) FlightFinder.prepareAirports((HashSet<Flight>) FlightFinder.prepareFlights())).stream()
-//                .map(e -> e.getAirportName())
-//                .forEach(System.out::println);
 
-//        System.out.println(FlightFinder.findFlights(new Flight("Kraków","Szczecin")));
+
+//        System.out.println(FlightFinder.findFlights(new Flight("Gdańsk","Kraków")));
 //        System.out.println(FlightFinder.findFlights(new Flight("Warszawa","Poznań")));
-        System.out.println(FlightFinder.findFlights(new Flight("Katowice","Warszawa")));
-        System.out.println(FlightFinder.findFlights(new Flight("Warszawa","Katowice")));
-        System.out.println(FlightFinder.findFlights(new Flight("Poznań","Katowice")));
+        System.out.println(FlightFinder.findFlights(new Flight("Katowice","Szczecin")));
+        System.out.println(FlightFinder.findFlights(new Flight("Szczecin","Katowice")));
+//        System.out.println(FlightFinder.findFlights(new Flight("Poznań","Katowice")));
 
     }
 }

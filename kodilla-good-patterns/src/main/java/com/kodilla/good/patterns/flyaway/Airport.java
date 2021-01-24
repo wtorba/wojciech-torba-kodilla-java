@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.flyAway;
+package com.kodilla.good.patterns.flyaway;
 
 import java.util.Objects;
 

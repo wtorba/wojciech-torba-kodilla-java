@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.flyAway;
+package com.kodilla.good.patterns.flyaway;
 
 import java.util.Objects;
 
@@ -31,5 +31,10 @@ public class Flight {
     @Override
     public int hashCode() {
         return Objects.hash(departureAirport, arrivalAirport);
+    }
+
+    @Override
+    public String toString() {
+        return"("+this.getDepartureAirport()+" - "+this.getArrivalAirport()+")";
     }
 }
