@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Airport {
     private final String airportName;
     private int visited;
-    private StringBuffer route = new StringBuffer();
+    private StringBuilder route = new StringBuilder();
 
     public Airport(String airportName) {
         this.airportName = airportName;
@@ -22,19 +22,19 @@ public class Airport {
 
     public void setVisited(String airport) {
         this.visited = 1;
-        this.route=new StringBuffer(airport).append(" > ").append(this.airportName);
+        this.route=new StringBuilder(airport).append(" > ").append(this.airportName);
     }
 
     public void setChecked() {
         this.visited = 2;
     }
 
-    public StringBuffer getRoute() {
+    public StringBuilder getRoute() {
         return route;
     }
 
     public void setRoute(String route) {
-        this.route=new StringBuffer(route);
+        this.route=new StringBuilder(route);
     }
 
     @Override
