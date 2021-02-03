@@ -19,7 +19,7 @@ class BigmacTestSuite {
                 .ingredient("Cheese")
                 .ingredient("Bacon")
                 .burgers(3)
-                .bun(Without Sezame"")
+                .bun("Without Sezame")
                 .build();
         System.out.println(bigmac);
         //When
