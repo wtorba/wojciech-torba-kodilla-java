@@ -1,0 +1,38 @@
+CREATE TABLE ISSUESLISTS
+(
+    ID SERIAL PRIMARY KEY,
+    NAME VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE ISSUES
+(
+    ID SERIAL PRIMARY KEY,
+    ISSUELIST_ID BIGINT UNSIGNED NOT NULL,
+    SUMMARY VARCHAR(100),
+    DESCRIPTION VARCHAR(300),
+    USER_ID_ASSIGNEDTO BIGINT UNSIGNED NOT NULL,
+    FOREIGN KEY (ISSUELIST_ID) REFERENCES ISSUESLISTS(ID),
+    FOREIGN KEY (USER_ID_ASSIGNEDTO) REFERENCES USERS(ID)
+);
+
+INSERT INTO ISSUESLISTS (NAME) VALUES 
+('ToDo')
+,('InProgress')
+,('Done');
+
+INSERT INTO ISSUES (ISSUELIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(3,'Wake up','Get your lazy a.. out of the bed',1)
+,(2,'Shower','Take a short shower',1)
+,(1,'Breakfest','Prepare breakfest for whole family',1)
+,(1,'Shower','Take a short shower',2)
+,(1,'Wake up','Get your lazy a.. out of the bed',2)
+,(1,'Dishes','Do the dishes',2)
+,(1,'Fix car','Fix your brand new car', 2)
+,(3,'Wake up','Get your lazy a.. out of the bed',3)
+,(2,'Shower','Take a short shower',3)
+,(3,'Wake up','Get your lazy a.. out of the bed',4)
+,(2,'Shower','Take a short shower',4)
+,(3,'Other Task','Some simple task',5)
+,(2,'Another Task','Some complex task',5)
+,(3,'Other Task','Some simple task',4)
+,(2,'Another Task','Some complex task',4);
