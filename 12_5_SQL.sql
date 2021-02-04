@@ -1,0 +1,7 @@
+INSERT INTO POSTS (USER_ID, BODY) VALUES (5, 'Troll troll troll');
+
+UPDATE POSTS SET BODY='To delete' WHERE USER_ID=5 AND BODY='Troll troll troll';
+
+DELETE FROM POSTS WHERE USER_ID=5 AND BODY='To delete';
+
+COMMIT;
