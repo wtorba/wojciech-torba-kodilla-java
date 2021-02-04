@@ -4,16 +4,20 @@ import com.kodilla.spring.shape.Circle;
 import com.kodilla.spring.shape.Shape;
 import com.kodilla.spring.shape.Square;
 import com.kodilla.spring.shape.Triangle;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.annotation.DirtiesContext;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @SpringBootTest
 class KodillaSpringApplicationTests {
 
+	@Disabled
 	@Test
 	void testSquareLoadedIntoContainer() {
 		//Given
@@ -26,6 +30,7 @@ class KodillaSpringApplicationTests {
 		assertEquals("This is a square.", name);
 	}
 
+	@Disabled
 	@Test
 	void testCircleLoadedIntoContainer() {
 		//Given
@@ -40,6 +45,7 @@ class KodillaSpringApplicationTests {
 		assertEquals("This is a circle.", name);
 	}
 
+	@Disabled
 	@Test
 	void testTriangleLoadedIntoContainer() {
 		//Given
@@ -86,6 +92,7 @@ class KodillaSpringApplicationTests {
 		assertEquals("This is a triangle.", name);
 	}
 
+	@Disabled
 	@Test
 	void testSquareLoadedIntoContainer2() {
 		//Given
