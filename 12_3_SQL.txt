@@ -36,3 +36,5 @@ INSERT INTO ISSUES (ISSUELIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALU
 ,(2,'Another Task','Some complex task',5)
 ,(3,'Other Task','Some simple task',4)
 ,(2,'Another Task','Some complex task',4);
+
+COMMIT;
