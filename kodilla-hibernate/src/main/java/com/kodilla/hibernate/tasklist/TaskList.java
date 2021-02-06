@@ -2,10 +2,9 @@ package com.kodilla.hibernate.tasklist;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Entity
-@Table(name = "TASKLIST")
+@Table(name = "TASKLISTS")
 public class TaskList {
     private int id;
     private String listName;
