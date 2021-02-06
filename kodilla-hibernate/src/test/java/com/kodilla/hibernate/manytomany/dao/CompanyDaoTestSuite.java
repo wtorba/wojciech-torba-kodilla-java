@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -13,6 +15,51 @@ class CompanyDaoTestSuite {
 
     @Autowired
     private CompanyDao companyDao;
+    @Autowired
+    private EmployeeDao employeeDao;
+
+    @Test
+    void testEmployeeNamedQueries() {
+        //Given
+        Employee johnSmith = new Employee("John", "Fasola");
+        Employee stephanieClarckson = new Employee("Stephanie", "Groch");
+        Employee lindaKovalsky = new Employee("Linda", "Szparag");
+        employeeDao.save(johnSmith);
+        employeeDao.save(stephanieClarckson);
+        employeeDao.save(lindaKovalsky);
+
+        //When
+        List<Employee> employeeSmith = employeeDao.retrieveEmployeeByLastname("Fasola");
+
+        //Then
+        assertEquals(1, employeeSmith.size());
+
+        //Cleanup
+        employeeDao.deleteById(johnSmith.getId());
+        employeeDao.deleteById(stephanieClarckson.getId());
+        employeeDao.deleteById(lindaKovalsky.getId());
+    }
+
+    @Test
+    void testCompanyNamedQueries() {
+        //Given
+        Company firma1 = new Company("Software Gods");
+        Company firma2 = new Company("Data Diggers");
+        Company firma3 = new Company("Data Miners");
+        companyDao.save(firma1);
+        companyDao.save(firma2);
+        companyDao.save(firma3);
+        //When
+        List<Company> companiesDat = companyDao.retrieveCompaniesWithNameLike("Dat");
+
+        //Then
+        assertEquals(2, companiesDat.size());
+
+        //Cleanup
+        companyDao.deleteById(firma1.getId());
+        companyDao.deleteById(firma2.getId());
+        companyDao.deleteById((firma3.getId()));
+    }
 
     @Test
     void testSaveManyToMany() {
@@ -51,12 +98,12 @@ class CompanyDaoTestSuite {
         assertNotEquals(0, greyMatterId);
 
         //CleanUp
-//        try {
-//            companyDao.deleteById(softwareMachineId);
-//            companyDao.deleteById(dataMaestersId);
-//            companyDao.deleteById(greyMatterId);
-//        } catch (Exception e) {
-//            //do nothing
-//        }
+        try {
+            companyDao.deleteById(softwareMachineId);
+            companyDao.deleteById(dataMaestersId);
+            companyDao.deleteById(greyMatterId);
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 }
