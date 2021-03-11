@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -61,6 +63,7 @@ class CompanyDaoTestSuite {
         companyDao.deleteById((firma3.getId()));
     }
 
+    @Transactional
     @Test
     void testSaveManyToMany() {
         //Given
@@ -78,8 +81,8 @@ class CompanyDaoTestSuite {
         greyMatter.getEmployees().add(johnSmith);
         greyMatter.getEmployees().add(lindaKovalsky);
 
-        johnSmith.getCompanies().add(softwareMachine);
-        johnSmith.getCompanies().add(greyMatter);
+        //johnSmith.getCompanies().add(softwareMachine);
+        //johnSmith.getCompanies().add(greyMatter);
         stephanieClarckson.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(greyMatter);
